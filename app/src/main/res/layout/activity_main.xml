@@ -11,15 +11,15 @@
         android:layout_height="0dp"
         android:layout_margin="15dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <EditText
+        <Button
             android:id="@+id/total"
             style="@style/numeros"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_margin="3dp"
-            android:layout_weight="4"
+            android:layout_weight="1"
             android:gravity="right" />
 
     </LinearLayout>
@@ -32,7 +32,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/subtotalCant"
+            android:id="@+id/number"
             style="@style/numeros"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -48,8 +48,8 @@
             android:layout_weight="1"
             android:text="X" />
 
-        <EditText
-            android:id="@+id/subtotalAmount"
+        <Button
+            android:id="@+id/parcial"
             style="@style/numeros"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -230,6 +230,24 @@
 
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/imprimir"
+            style="@style/math"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:text="IMPRIMIR"/>
+
     </LinearLayout>
 
 </LinearLayout>

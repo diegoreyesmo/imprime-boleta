@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Imprime Boleta</string>
     <string name="borrar"><![CDATA[<-]]></string>
+    <string name="excede_maximo">No juegue con los números</string>
 </resources>
