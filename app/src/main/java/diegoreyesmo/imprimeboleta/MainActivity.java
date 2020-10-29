@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import diegoreyesmo.imprimeboleta.dto.DocumentoRequestDTO;
+import diegoreyesmo.imprimeboleta.dto.LoginRequestDTO;
 import diegoreyesmo.imprimeboleta.ui.Botones;
 
 
@@ -40,7 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private Button buttonMore;
     private Button buttonMulti;
 
+    private Button buttonImprimir;
+
     private boolean flagNumber = true;
+
+    private ClienteWs clienteWs;
+    private DocumentoRequestDTO documentoRequestDTO;
+    private LoginRequestDTO loginRequestDTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,17 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         setContentView(R.layout.activity_main);
         inicializarComponentes();
         agregarListener();
+        clienteWs = new ClienteWs(this);
+        loginRequestDTO = new LoginRequestDTO();
+        loginRequestDTO.setIdPos(getString(R.string.id_pos));
+        loginRequestDTO.setUsername(getString(R.string.username));
+        loginRequestDTO.setPassword(getString(R.string.password));
+        clienteWs.login(loginRequestDTO);
+        documentoRequestDTO = new DocumentoRequestDTO();
+        documentoRequestDTO.setIdPos(getString(R.string.id_pos));
+        documentoRequestDTO.setUsername(getString(R.string.username));
+        documentoRequestDTO.setPassword(getString(R.string.password));
+        documentoRequestDTO.setTipodocumento(getString(R.string.tipo_documento));
         current = parcial;
         logger.info("[onCreate] fin");
     }
@@ -72,12 +91,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         number.setOnTouchListener(this);
         total.setOnTouchListener(this);
         parcial.setOnTouchListener(this);
+        buttonImprimir.setOnTouchListener(this);
     }
 
     private void inicializarComponentes() {
         total = (Button) findViewById(R.id.total);
         parcial = (Button) findViewById(R.id.parcial);
         number = (Button) findViewById(R.id.number);
+        buttonImprimir = (Button) findViewById(R.id.imprimir);
         button0 = (Button) findViewById(R.id.button0);
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
@@ -164,6 +185,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 else {
                     current = number;
                 }
+            }
+
+            if (buttonImprimir.equals((Button) view)) {
+                int monto = Util.parseInt(total.getText().toString());
+                if (monto > 0) {
+                    documentoRequestDTO.setMonto(String.valueOf(monto));
+                    clienteWs.documento(documentoRequestDTO);
+                }
+
             }
 
         }

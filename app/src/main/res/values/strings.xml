@@ -2,4 +2,11 @@
     <string name="app_name">Imprime Boleta</string>
     <string name="borrar"><![CDATA[<-]]></string>
     <string name="excede_maximo">No juegue con los números</string>
+    <string name="url_base">http://35.155.21.45/app/ws_android.asmx/</string>
+    <string name="login_path">POSlogin</string>
+    <string name="document_path">POSDocumento</string>
+    <string name="id_pos">ddd</string>
+    <string name="username">clmolina</string>
+    <string name="password">123</string>
+    <string name="tipo_documento">34</string>
 </resources>
